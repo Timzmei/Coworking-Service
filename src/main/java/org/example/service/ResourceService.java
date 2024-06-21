@@ -1,5 +1,11 @@
 package org.example.service;
 
+import org.example.model.ConferenceRoom;
+import org.example.model.Workspace;
+
+import java.util.ArrayList;
+import java.util.List;
+
 public class ResourceService {
     private List<Workspace> workspaces = new ArrayList<>();
     private List<ConferenceRoom> conferenceRooms = new ArrayList<>();
