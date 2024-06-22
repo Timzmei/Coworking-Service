@@ -1,24 +1,68 @@
 package org.example.model;
 
-public class ConferenceRoom {
+import java.time.LocalDateTime;
+
+public class ConferenceRoom extends Resource implements Booking {
     private int id;
-    private String name;
+    private boolean status;
+    private User user;
 
-    public ConferenceRoom(int id, String name) {
+    private LocalDateTime startTime;
+    private LocalDateTime endTime;
+    public ConferenceRoom(int id) {
         this.id = id;
-        this.name = name;
+        this.status = true;
+        this.user = null;
+        this.startTime = null;
+        this.endTime = null;
     }
-
+    @Override
     public int getId() {
         return id;
     }
+    @Override
+    public void changeStatus() {
+        this.status = !this.status;
+    }
+    @Override
+    public boolean getStatus() {
+        return this.status;
+    }
 
-    public String getName() {
-        return name;
+    @Override
+    public User getUser() {
+        return user;
+    }
+    @Override
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    @Override
+    public LocalDateTime getStartTime() {
+        return startTime;
+    }
+
+    @Override
+    public LocalDateTime getEndTime() {
+        return endTime;
+    }
+
+    @Override
+    public void bookResource(LocalDateTime startTime, LocalDateTime endTime, User user) {
+        this.startTime = startTime;
+        this.endTime = endTime;
+        this.user = user;
+        this.status = false;
     }
 
     @Override
     public String toString() {
-        return "ConferenceRoom{id=" + id + ", name='" + name + "'}";
+        if (this.status) {
+            return "ConferenceRoom{id=" + id + "}";
+        } else {
+            return "ConferenceRoom{id=" + id + ", username='" + user.getUsername() + "', startTime=" + startTime + ", endTime=" + endTime + '}';
+        }
+
     }
 }

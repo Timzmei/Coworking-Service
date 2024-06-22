@@ -19,6 +19,7 @@ public class UserService {
     public User login(String username, String password) {
         User user = users.get(username);
         if (user != null && user.getPassword().equals(password)) {
+
             return user;
         }
         return null;
